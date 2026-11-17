@@ -13,6 +13,7 @@ import { STEPS, Step, chapterProgress, remainingMinutes, scenariosForStep } from
 import { Outcome, runRecall, runScenario } from './panels';
 import { seqFor } from '../content/sequences';
 import { playSceneIntro } from './scenePlay';
+import { runMemoryDrill } from './memoryArchive';
 import { runVehicleSequence } from './vehicleSequence';
 import { handleEscape, h, btn, modalDepth, runDialogue, toast, $, openModal } from './ui';
 import { openEncyclopedia, openNotebook, openPause, showMenu, showSummary } from './screens';
@@ -89,13 +90,13 @@ export class Game {
     r.completedSteps.push(step.id); r.stepIdx++; sfx.discover(); this.save();
     if (step.hearing) r.flags['hearing_ids:' + list.map(s => s.id).join(',')] = true;
     if (step.chapterEnd) { r.chapterDone[String(step.chapterEnd)] = true; this.save(); toast(`Chapter ${step.chapterEnd} complete. Keep going: the case continues.`); }
-    if (step.end) { this.busy = false; this.finale(list); }
+    if (step.end) { const pr = await runMemoryDrill({ count: 3, title: 'Final hearing: cite the precedent' }); r.flags['precedents:' + pr.right + '/' + pr.total] = true; this.busy = false; this.finale(list, pr); }
   }
   private hearingNow = false;
   private async playScenario(s: Scenario, o: { index?: number; total?: number; mode: string }) {
     const r = this.profile.run; const seq = seqFor(s.id); let out: Outcome | undefined;
     if (seq && !['rapid', 'review'].includes(o.mode)) { try { out = await runVehicleSequence(s, seq, { ...o, reduced: this.profile.settings.reducedMotion, onCase: id => openEncyclopedia(this, id) }); } catch (e) { console.error('sequence failed, using classic panel', e); } }
-    if (!out && !['rapid', 'review'].includes(o.mode)) { const ch = objectiveById(s.objectiveId)?.chapter ?? 6; if (ch !== 6) { try { await playSceneIntro(s, ch, !!this.hearingNow, this.profile.settings.reducedMotion); } catch (e) { console.warn('scene intro failed', e); } } }
+    if (!out && !['rapid', 'review'].includes(o.mode)) { const ch = objectiveById(s.objectiveId)?.chapter ?? 6; { try { await playSceneIntro(s, ch, !!this.hearingNow, this.profile.settings.reducedMotion); } catch (e) { console.warn('scene intro failed', e); } } }
     out ??= await runScenario(s, { ...o, onCase: id => openEncyclopedia(this, id) });
     this.record({ itemId: s.id, objectiveId: s.objectiveId, chapter: (objectiveById(s.objectiveId)?.chapter ?? 6) as 6 | 7 | 8 | 10, category: 'application', correct: out.correct, hintsUsed: out.hintsUsed, mode: o.mode, runId: r?.runId ?? 'practice', variant: s.variant });
     if (r && o.mode === 'full') {
@@ -132,7 +133,7 @@ export class Game {
     }
     return out;
   }
-  private finale(hearing: Scenario[]) {
+  private finale(hearing: Scenario[], pr?: { right: number; total: number }) {
     const r = this.head(); const recs = this.profile.records.filter(x => x.runId === r.runId);
     const hs = hearing.map(s => recs.filter(x => x.itemId === s.id).slice(-1)[0]).filter(Boolean); const won = hs.filter(x => x.correct).length;
     const acc = recs.length ? Math.round(100 * recs.filter(x => x.correct).length / recs.length) : 0;
@@ -144,6 +145,7 @@ export class Game {
     else if (won >= hearing.length - 1) { id = 'complications'; title = 'Ending: Justice With Complications'; text = ['Most of the evidence comes in, but one ruling costs you something. The case stands, with a few gaps the defense will keep poking at.']; }
     else if (won >= 2) { id = 'suppressed'; title = 'Ending: Suppressed Case'; text = ['The judge grants part of the motion to suppress. Key evidence is excluded, and the prosecution is left with a much thinner case.']; }
     else { id = 'unresolved'; title = 'Ending: Unresolved Case (Case Reopened)'; text = ['The hearing goes badly and the case is left unresolved. Ward reopens the file: "We missed something. Review what went wrong and try again." Use the 5-minute review below, or replay the investigation.']; }
+    if (pr) text.push(`Precedents cited correctly at the hearing: ${pr.right} of ${pr.total}.`);
     text.push(`Final hearing: ${won} of ${hearing.length} decisions correct. First-attempt accuracy across the session: ${acc}%. Playtime: about ${Math.round(r.elapsedMs / 60000)} min.`);
     text.push('This ending reflects how you applied the rules in this session. It is a story result, not a grade, and is separate from mastery.');
     if (!this.profile.endingsUnlocked.includes(id)) this.profile.endingsUnlocked.push(id);

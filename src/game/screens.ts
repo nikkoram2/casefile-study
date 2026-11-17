@@ -28,7 +28,7 @@ export function showMenu(g: Game) {
       lifetime.total ? btn('📊 My Results', () => showSummary(g, g.profile.records, { title: 'All practice so far' }), 'big ghost') : null),
     h('div', { class: 'mfoot' },
       h('p', null, 'Study aid only. It does not replace your assigned readings or instructor guidance, and playing does not guarantee exam readiness. Progress saves in this browser; no account needed.'),
-      h('p', { class: 'muted' }, 'The full campaign covers Chapters 6, 7, 8 and 10 and ends with a final suppression hearing. Courtroom, interrogation-room and document-inspection presentation for Chapters 7, 8 and 10 still uses the standard decision panel.')));
+      h('p', { class: 'muted' }, 'The full campaign covers Chapters 6, 7, 8 and 10 and ends with a final suppression hearing. Scenes are short staged animations on shared backgrounds; art is placeholder-quality.')));
   $('#ui').append(root);
 }
 

@@ -31,6 +31,16 @@ export function handleEscape(): boolean { const top = stack[stack.length - 1]; i
 export function toast(msg: string) { const t = h('div', { class: 'toast', role: 'status' }, msg); $('#ui').append(t); setTimeout(() => t.remove(), 2400); }
 
 export interface DLine { who: string; text: string; }
+const CHAR_OF: Record<string, string> = { Ward: 'ward', Brooks: 'brooks', Hale: 'hale', Vance: 'vance', Marla: 'marla', Rookie: 'player', You: 'player' };
+export const dialogueHistory: { who: string; text: string }[] = [];
+async function portrait(who: string): Promise<HTMLCanvasElement | null> {
+  const ch = CHAR_OF[who]; if (!ch) return null;
+  try {
+    const { Assets } = await import('../engine/assets'); const a = await Assets.get(); const n = `${ch}/idle_down_0`; if (!a.has(n)) return null;
+    const f = a.info(n), cv = document.createElement('canvas'), s = 4; cv.width = 24 * s; cv.height = 20 * s; cv.className = 'portrait'; cv.setAttribute('aria-hidden', 'true');
+    const c = cv.getContext('2d')!; c.imageSmoothingEnabled = false; c.drawImage(a.atlas, f.x, f.y, f.w, Math.min(f.h, 20), 0, 0, f.w * s, Math.min(f.h, 20) * s); return cv;
+  } catch { return null; }
+}
 export function runDialogue(lines: DLine[], seen: boolean): Promise<void> {
   return new Promise(resolve => {
     if (!lines.length) return resolve();
@@ -38,12 +48,18 @@ export function runDialogue(lines: DLine[], seen: boolean): Promise<void> {
     const who = h('div', { class: 'who' }), text = h('div', { class: 'say' }), count = h('div', { class: 'dcount' });
     const next = btn('Next ▸', () => advance(), 'primary small', { autofocus: true });
     const skip = btn(seen ? 'Skip (already seen)' : 'Skip', () => finish(), 'ghost small');
-    const box = h('div', { class: 'dialogue', role: 'dialog', 'aria-live': 'polite' }, who, text, h('div', { class: 'drow' }, count, skip, next));
+    const port = h('div', { class: 'portwrap' }); const logBtn = btn('Log', () => { const m = openModal(h('div', null, h('h2', null, 'Conversation log'), ...dialogueHistory.slice(-40).map(l => h('p', null, h('b', null, l.who + ': '), l.text)), h('div', { class: 'row end' }, btn('Close', () => m.close(), 'primary'))), { label: 'Conversation log' }); }, 'ghost small');
+    const box = h('div', { class: 'dialogue', role: 'dialog', 'aria-live': 'polite' }, port, h('div', { class: 'dbody' }, who, text, h('div', { class: 'drow' }, count, logBtn, skip, next)));
     ui.append(box);
-    const show = () => { who.textContent = lines[i].who; text.textContent = lines[i].text; count.textContent = `${i + 1}/${lines.length}`; sfx.paper(); };
-    const advance = () => { i++; if (i >= lines.length) finish(); else show(); };
+    let tw = 0; const show = () => {
+      const L = lines[i]; who.textContent = L.who; count.textContent = `${i + 1}/${lines.length}`; sfx.paper(); dialogueHistory.push({ who: L.who, text: L.text });
+      void portrait(L.who).then(c => port.replaceChildren(...(c ? [c] : []))); clearInterval(tw);
+      if (document.body.classList.contains('rm') || matchMedia('(prefers-reduced-motion: reduce)').matches) { text.textContent = L.text; return; }
+      let k = 0; text.textContent = ''; tw = window.setInterval(() => { text.textContent = L.text.slice(0, ++k); if (k >= L.text.length) clearInterval(tw); }, 14);
+    };
+    const advance = () => { if (text.textContent !== lines[i].text) { clearInterval(tw); text.textContent = lines[i].text; return; } i++; if (i >= lines.length) finish(); else show(); };
     const onKey = (e: KeyboardEvent) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); advance(); } else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); finish(); } };
-    function finish() { window.removeEventListener('keydown', onKey, true); box.remove(); resolve(); }
+    function finish() { clearInterval(tw); window.removeEventListener('keydown', onKey, true); box.remove(); resolve(); }
     window.addEventListener('keydown', onKey, true); show();
   });
 }

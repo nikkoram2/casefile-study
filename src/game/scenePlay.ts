@@ -10,6 +10,22 @@ import { h, btn } from './ui';
 type Setting = { scene: 'alder' | 'precinct'; label: string; rain: boolean; cast: (s: Stage, d: Director) => Promise<void>; focus: [number, number, number] };
 const wait = (d: Director, ms: number) => d.wait(d.instant ? 0 : ms);
 
+const E = (id: string, ch: string, x: number, y: number, dir: 'left' | 'right' | 'up' | 'down') => { const a = new Actor(id, ch, x, y); a.dir = dir; return a; };
+/** Objective-specific staging (arrest, handcuffing, consent entry, residential search, document inspection, evidence presentation). */
+const VARIANTS: [RegExp, Setting][] = [
+  [/CH6-GRAB|CH6-ROBINSON|CH6-3STEP/, { scene: 'alder', label: 'ARREST', rain: true, focus: [340, 260, 1.5], cast: async (s, d) => {
+    const v = E('v', 'vance', 330, 282, 'left'), b = E('b', 'brooks', 250, 290, 'right'); s.actors.push(v, b); await b.walkTo(300, 284, 62, d.instant);
+    v.play('react', 'left'); await wait(d, 700); b.play('handcuff', 'right'); await wait(d, 1300); v.play('cuffed', 'left'); b.play('idle', 'right'); await wait(d, 700); } }],
+  [/CH6-CONSENT|CH6-KNOCK/, { scene: 'alder', label: 'AT THE DOOR', rain: true, focus: [70, 200, 1.6], cast: async (s, d) => {
+    const m = E('m', 'marla', 42, 190, 'down'), w = E('w', 'ward', 20, 210, 'right'); s.actors.push(m, w); const p = E('p', 'player', -10, 214, 'right'); s.actors.push(p);
+    await p.walkTo(30, 214, 50, d.instant); w.play('talk', 'right'); await wait(d, 1200); m.play('talk', 'down'); await wait(d, 1000); await p.walkTo(44, 190, 40, d.instant); await wait(d, 500); } }],
+  [/CH6-WARRANT|CH6-CONTAINER/, { scene: 'precinct', label: 'DOCUMENT INSPECTION', rain: false, focus: [320, 170, 1.6], cast: async (s, d) => {
+    const w = E('w', 'ward', 300, 180, 'up'), p = E('p', 'player', 345, 182, 'up'); s.actors.push(w, p); w.play('read', 'up'); await wait(d, 1500); p.play('inspect', 'up'); await wait(d, 1500); w.play('talk', 'right'); await wait(d, 800); } }],
+  [/CH6-EXIGENT|CH6-EXCEPTIONS|CH6-PRETEXT/, { scene: 'alder', label: 'RESIDENTIAL SEARCH', rain: true, focus: [90, 210, 1.5], cast: async (s, d) => {
+    const b = E('b', 'brooks', 110, 215, 'left'), w = E('w', 'ward', 140, 220, 'left'); s.actors.push(b, w); await b.walkTo(60, 196, 55, d.instant); b.play('search', 'left'); await wait(d, 1400); b.play('pickup', 'left'); w.play('inspect', 'left'); await wait(d, 1000); } }],
+  [/CH10-HUDSON|CH10-FRUIT|CH10-MAPP/, { scene: 'precinct', label: 'EVIDENCE PRESENTATION', rain: false, focus: [320, 200, 1.5], cast: async (s, d) => {
+    const w = E('w', 'ward', 300, 230, 'right'), hl = E('h', 'hale', 350, 230, 'left'); s.actors.push(w, hl); w.play('present', 'right'); await wait(d, 1500); hl.play('inspect', 'left'); await wait(d, 1200); w.play('idle', 'right'); await wait(d, 300); } }]
+];
 const SETTINGS: Record<string, Setting> = {
   '7': { scene: 'alder', label: 'CHECKPOINT / IMPOUND LOT', rain: true, focus: [260, 250, 1.4], cast: async (s, d) => {
     const b = new Actor('b', 'brooks', 120, 290), w = new Actor('w', 'ward', 90, 300); s.actors.push(b, w); w.dir = 'right';
@@ -27,7 +43,7 @@ const SETTINGS: Record<string, Setting> = {
 
 /** Resolves when the intro finishes or is skipped. Never throws: callers fall back to the plain panel. */
 export async function playSceneIntro(s: Scenario, chapter: number, hearing: boolean, reduced: boolean): Promise<void> {
-  const set = SETTINGS[hearing ? '10' : String(chapter)]; if (!set) return;
+  const obj = s.objectiveId; const set = hearing ? SETTINGS['10'] : (VARIANTS.find(v => v[0].test(obj))?.[1] ?? SETTINGS[String(chapter)]); if (!set) return;
   const assets = await Assets.get(); const dir = new Director(); dir.reduced = reduced;
   const canvas = h('canvas', { class: 'seq-canvas', role: 'img', 'aria-label': `${set.label}. ${s.setup}` }) as HTMLCanvasElement;
   const label = h('div', { class: 'eyebrow' }, `${set.label} · ${s.title}`);

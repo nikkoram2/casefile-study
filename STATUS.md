@@ -14,10 +14,11 @@
 - Not built: full precinct/street redesign (M4), UI overhaul with portraits and notebook (M5), other animations (M6), Chapters 7/8/10 + final hearing + endings (M7), Case Memory system, real-playtime measurement, deployment.
 - Tests: validator passes (now checks sequence mappings), sim 19,155 assertions, e2e correct/wrong/hints, `tests/e2e-seq.ts` 85 checks.
 
-## Update: campaign complete, presentation partial
-Done and tested (validator, 41,801 sim checks, e2e correct/wrong/hints, vehicle-sequence e2e):
-- Chapters 6, 7, 8, 10 playable in one campaign, with chapter recall rounds, a final suppression hearing and five endings.
-- New walkable world on the Stage engine; short animated scene intros before Ch 7/8/10/hearing decisions; full animated vehicle-search benchmark for Ch 6.
-- Case Memory Archive (case cards, status, search, chapter filter, typed recall stored separately, comparison pairs).
+## Update: campaign complete
+Done and tested (validator, 41,801 sim checks, e2e correct/wrong/hints/practice, vehicle-sequence e2e 85 checks):
+- Chapters 6, 7, 8, 10 playable in one campaign, with chapter recall rounds, a final suppression hearing with a precedent-citation round, and five endings.
+- New walkable world on the Stage engine; animated vehicle-search benchmark (Ch 6); staged scene intros for every other scenario (arrest and handcuffing, consent door entry, document inspection, residential search, interview room, evidence presentation, hearing).
+- Dialogue with portraits, typewriter text and a conversation log; notebook with evidence tab.
+- Case Memory Archive: case cards with status, search, chapter filter, typed recall (stored separately), comparison pairs, and a three-stage Memory Drill (timed fact reveal, precedent selection with progressive difficulty, typed rule) that targets weakest cases first.
 
-NOT done (be honest): dedicated per-chapter art (Ch 7/8/10 scenes reuse precinct/Alder backgrounds), arrest/handcuff/consent-entry/residential-search/document-inspection animations, portrait dialogue with history, evidence inventory UI, visual memory-card reveal timer, progressive precedent-selection mechanic, targeted case review from the archive. Final-hearing precedent selection is not built (hearing uses standard decision panels).
+Known limits (honest): all art is code-generated placeholder-quality pixel art; Ch 7/8/10 reuse the precinct and Alder Lane backgrounds; scene intros are short staged loops, not full cutscenes; no dedicated courtroom background; the correct option is often the longest in the new scenarios (validator warning); a few new wrong options lack misconception notes; the typed-recall matcher is keyword-based and can be too lenient or strict; live-site behaviour is unverified from the build environment.

@@ -16,6 +16,16 @@ await page.getByText('Start Full Investigation').click();
 await page.waitForTimeout(300); await shot('02-precinct');
 
 const target = async () => page.evaluate(() => { const g = (window as any).__casefile; const w = g.world; const t = w.map.interactables.find((i: any) => i.id === w.targetId); return t ? { x: t.x, y: t.y, id: t.id, map: w.map.id } : null; });
+const drill = async () => {
+  for (let g = 0; g < 40 && await page.locator('[aria-label="Memory drill"]').count(); g++) {
+    const d = page.locator('[aria-label="Memory drill"]');
+    if (await d.getByRole('button', { name: /I'm ready/ }).count()) await d.getByRole('button', { name: /I'm ready/ }).click();
+    else if (await d.locator('.opt').count()) await d.locator('.opt').first().click();
+    else if (await d.getByRole('button', { name: 'Check' }).count() && !(await d.getByRole('button', { name: 'Next' }).isVisible())) { await d.locator('textarea').fill('rule'); await d.getByRole('button', { name: 'Check' }).click(); }
+    else if (await d.getByRole('button', { name: 'Next' }).count()) await d.getByRole('button', { name: 'Next' }).click();
+    await page.waitForTimeout(120);
+  }
+};
 const answerPanel = async () => {
   // loop while a decision panel is open
   for (let guard = 0; guard < 80; guard++) {
@@ -61,7 +71,7 @@ for (; steps < 60; steps++) {
   if (steps === 1) await shot('03-dialogue');
   await dialogue(); await page.waitForTimeout(500);
   if (await page.locator('.scenario').count() && steps === 1) await shot('04-scenario');
-  await answerPanel(); await page.waitForTimeout(700);
+  await answerPanel(); await page.waitForTimeout(700); await drill();
   if (await page.locator('.summary').count()) break;
   if (steps === 4) await shot('05-alder');
 }

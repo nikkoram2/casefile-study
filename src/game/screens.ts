@@ -17,16 +17,16 @@ export function showMenu(g: Game) {
   const root = h('div', { class: 'menuscreen' },
     h('div', { class: 'title' }, h('div', { class: 'eyebrow' }, 'A Criminal Procedure study adventure'), h('h1', null, 'CASEFILE'), h('h2', null, 'Shadows of Justice')),
     h('div', { class: 'mbtns' },
-      btn('▶ Start Full Investigation', async () => { if (hasRun && !(await confirmModal('Starting a new investigation replaces your saved session. Your lifetime practice history is kept. Continue?', 'Start new'))) return; root.remove(); g.startFull(); }, 'primary big', { autofocus: true }),
+      btn('Start Full Investigation', async () => { if (hasRun && !(await confirmModal('Starting a new investigation replaces your saved session. Your lifetime practice history is kept. Continue?', 'Start new'))) return; root.remove(); g.startFull(); }, 'primary big', { autofocus: true }),
       btn(hasRun ? `⏵ Continue Session (${STEPS[g.profile.run!.stepIdx]?.chapter ?? 'Chapter 6'})` : '⏵ Continue Session', () => { root.remove(); g.continueRun(); }, 'big', hasRun ? {} : { disabled: true }),
-      btn('⚡ Rapid Review (15–25 min)', () => { root.remove(); g.rapidReview(); }, 'big'),
-      btn('🎯 Targeted Practice', () => openPracticeSetup(g, root), 'big'),
-      btn('📚 Case Encyclopedia', () => openEncyclopedia(g), 'big'),
-      btn('⚙ Settings', () => openSettings(g), 'big'),
+      btn('Rapid Review (15–25 min)', () => { root.remove(); g.rapidReview(); }, 'big'),
+      btn('Targeted Practice', () => openPracticeSetup(g, root), 'big'),
+      btn('Case Encyclopedia', () => openEncyclopedia(g), 'big'),
+      btn('Settings', () => openSettings(g), 'big'),
       lifetime.total ? btn('📊 My Results', () => showSummary(g, g.profile.records, { title: 'All practice so far' }), 'big ghost') : null),
     h('div', { class: 'mfoot' },
       h('p', null, 'Study aid only. It does not replace your assigned readings or instructor guidance, and playing does not guarantee exam readiness. Progress saves in this browser; no account needed.'),
-      h('p', { class: 'muted' }, 'This build: Prologue + Chapter 6 investigation are playable. Chapters 7, 8 and 10 are available through Rapid Review, Targeted Practice and the Case Encyclopedia (their investigation missions are not built yet).')));
+      h('p', { class: 'muted' }, 'The full campaign covers Chapters 6, 7, 8 and 10 and ends with a final suppression hearing. Courtroom, interrogation-room and document-inspection presentation for Chapters 7, 8 and 10 still uses the standard decision panel.')));
   $('#ui').append(root);
 }
 

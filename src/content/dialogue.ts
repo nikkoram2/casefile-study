@@ -31,6 +31,36 @@ export const DIALOGUE: Record<string, Line[]> = {
   f_challenge: [
     { who: 'Ward', text: 'Hale wants a clean evidence log before the hearing. Prove you can apply the rules to facts you have not seen.' }
   ],
+  h_lot: [
+    { who: 'Ward', text: 'The ledger points at the Blackridge impound lot. Cars get inventoried there, and that has its own rules.' },
+    { who: 'Ward', text: 'Inventory searches and special-needs searches follow standardized policy. Check whether the procedure was actually followed.' }
+  ],
+  h_board: [
+    { who: 'Ward', text: 'Three more contexts on the board: borders, schools, and people whose status changes their privacy. Take each in turn.' }
+  ],
+  i_stop: [
+    { who: 'Brooks', text: 'I asked the driver a couple of roadside questions before I arrested him. No warnings. Was that a problem?' },
+    { who: 'Ward', text: 'Miranda needs custody and interrogation. Work out which parts of this were which.' }
+  ],
+  i_vance: [
+    { who: 'Ward', text: 'Vance is in the interview chair. Watch what the detective says, and what it is likely to get out of him.' }
+  ],
+  i_marla: [
+    { who: 'Ward', text: 'Marla\'s teenage son saw something. Juveniles and physical evidence come with their own rules.' }
+  ],
+  j_prep: [
+    { who: 'Hale', text: 'The defense will move to suppress everything. First, why do we even have an exclusionary rule?' }
+  ],
+  j_ward: [
+    { who: 'Ward', text: 'Suppression is not the end of the road. Know the exceptions and which violations do not trigger exclusion.' }
+  ],
+  j_board: [
+    { who: 'Hale', text: 'Last pieces: good faith, and where the rule applies. Then we go to court.' }
+  ],
+  k_hearing: [
+    { who: 'Hale', text: 'The judge will test you on all four chapters. One decision from each. Take your time.' },
+    { who: 'Ward', text: 'Whatever happens, we follow the rules. Let us go.' }
+  ],
   g_wrap: [
     { who: 'Ward', text: 'The ledger page from the van lists a delivery address: the Blackridge impound lot. That is Chapter 7 territory.' },
     { who: 'Hale', text: 'Searches of that sort follow different rules. We will cover them next.', ifNotFlag: 'warrant_scope_error' },

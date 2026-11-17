@@ -51,4 +51,25 @@ export function alderLane(): Scene {
   lights.push({ x: 120, y: 118, r: 46, color: '#f6c870', a: 0.5 }, { x: 410, y: 126, r: 46, color: '#f6c870', a: 0.5 }, { x: 40, y: 110, r: 36, color: '#f6c870', a: 0.4 }, { x: 520, y: 100, r: 36, color: '#f6c870', a: 0.4 });
   return { id: 'alder', bg, fg, lights, puddles, walk: { x0: 12, y0: 176, x1: 628, y1: 338 } };
 }
-export const SCENES = [alderLane];
+
+export function precinct(): Scene {
+  const bg = new Img(SW, SH), fg = new Img(SW, SH), r = rngSeed(77);
+  // wall with wainscot
+  const wall = ramp('#3a4a68'); bg.rect(0, 0, SW, 126, wall.base); for (let x = 0; x < SW; x += 16) bg.vline(x, 20, 106, wall.sh);
+  bg.rect(0, 0, SW, 14, '#1c2440'); bg.rect(0, 14, SW, 2, '#56658f'); bg.rect(0, 92, SW, 34, '#2f3b58'); bg.rect(0, 92, SW, 2, '#56658f'); for (let x = 0; x < SW; x += 32) bg.vline(x, 94, 32, '#26304a'); bg.rect(0, 124, SW, 4, '#1a2036');
+  // windows w/ rainy night
+  for (const wx of [60, 190, 450, 580]) { bg.rect(wx - 3, 26, 62, 58, '#c9bb90'); bg.rect(wx, 29, 56, 52, '#18224a'); for (let i = 0; i < 12; i++) bg.rect(wx + 2 + Math.floor(r() * 50), 52 + Math.floor(r() * 26), 2, 3, r() > 0.5 ? '#c9a24a' : '#7d6a3a'); bg.rect(wx + 4, 62, 14, 19, '#161d3a'); bg.rect(wx + 28, 56, 20, 25, '#161d3a'); bg.vline(wx + 28, 29, 52, '#c9bb90'); bg.hline(wx, 54, 56, '#c9bb90'); for (let k = 0; k < 14; k++) bg.vline(wx + 2 + Math.floor(r() * 52), 31 + Math.floor(r() * 48), 4, '#6b87b8'); bg.rect(wx - 4, 84, 64, 3, '#e8dcc0'); }
+  // floor planks
+  const fl = ramp('#6a4a32'); bg.rect(0, 128, SW, SH - 128, fl.base); for (let y = 128; y < SH; y += 12) { bg.hline(0, y, SW, fl.dk); for (let x = ((y / 12) & 1) * 24; x < SW; x += 48) bg.vline(x, y, 12, fl.dk); }
+  for (let i = 0; i < 900; i++) bg.set(Math.floor(r() * SW), 130 + Math.floor(r() * (SH - 130)), r() > 0.5 ? fl.hi : fl.sh);
+  bg.rect(0, 128, SW, 6, '#4a3222'); bg.rect(240, 330, 160, 30, '#2a1d14'); bg.rect(246, 334, 148, 26, '#14161f'); bg.hline(246, 334, 148, '#c9a24a');
+  // door mat + frame at bottom center
+  bg.rect(286, 340, 68, 20, '#26304a'); bg.rect(290, 344, 60, 16, '#3a4a68'); bg.rect(0, 354, SW, 6, '#1a1410');
+  // ceiling shadow band
+  for (let y = 16; y < 30; y++) for (let x = (y & 1); x < SW; x += 2) bg.set(x, y, '#2a3558');
+  // foreground: ceiling pipes silhouette + tall plant leaves bottom-left
+  fg.rect(0, 0, SW, 4, '#0d1226'); const f = ramp('#2f5d3c'); for (let i = 0; i < 6; i++) fg.ellipse(18 + r() * 24, 346 + r() * 8, 9, 6, i % 2 ? f.base : f.dk);
+  const lights = [90, 270, 450, 590].map(x => ({ x, y: 60, r: 120, color: '#ffe2a8', a: 0.8 })).concat([200, 380, 520].map(x => ({ x, y: 230, r: 150, color: '#ffe2a8', a: 0.85 })));
+  return { id: 'precinct', bg, fg, lights, puddles: [], walk: { x0: 20, y0: 150, x1: 620, y1: 345 } };
+}
+export const SCENES = [alderLane, precinct];

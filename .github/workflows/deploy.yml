@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22 }
+        with: { node-version: 22, cache: npm }
       - run: npm install --no-audit --no-fund
       - name: Validate content (needs the study-guide source file)
         run: if [ -f src/content/source/study-guide.txt ]; then npm run validate; else echo "study-guide.txt not in repo; skipping validator"; fi

@@ -6,7 +6,7 @@ import type { Run } from '../persistence/save';
 
 export interface Step {
   id: string; map: 'precinct' | 'alder'; target: string; objective: string; minutes: number;
-  chapter: string; dialogue?: string; objectives?: string[]; fixedScenarios?: string[]; challenge?: boolean; transition?: 'alder'; end?: boolean;
+  chapter: string; dialogue?: string; objectives?: string[]; fixedScenarios?: string[]; challenge?: boolean; transition?: 'alder' | 'precinct'; end?: boolean; recallChapter?: 6 | 7 | 8 | 10; chapterEnd?: 6 | 7 | 8 | 10; hearing?: boolean;
 }
 export const STEPS: Step[] = [
   { id: 'pro-ward', map: 'precinct', target: 'ward', objective: 'Talk to Detective Ward', minutes: 1, chapter: 'Prologue', dialogue: 'pro_intro' },
@@ -18,8 +18,17 @@ export const STEPS: Step[] = [
   { id: 'c-cars', map: 'alder', target: 'cars', objective: 'Examine the vehicles on the street', minutes: 3, chapter: 'Chapter 6 · C: Vehicles', dialogue: 'c_cars', objectives: ['CH6-GANT', 'CH6-VEHICLE', 'CH6-CONTAINER'] },
   { id: 'd-consent', map: 'alder', target: 'marla', objective: 'Talk to the woman at Apartment 4C', minutes: 2, chapter: 'Chapter 6 · D: Consent', dialogue: 'd_consent', objectives: ['CH6-CONSENT'] },
   { id: 'e-stop', map: 'alder', target: 'stop', objective: 'Review Brooks\'s traffic stop', minutes: 2, chapter: 'Chapter 6 · E: Traffic stop', dialogue: 'e_stop', objectives: ['CH6-PRETEXT', 'CH6-EXIGENT'] },
-  { id: 'f-challenge', map: 'alder', target: 'van', objective: 'Chapter challenge at the command van', minutes: 4, chapter: 'Chapter 6 · Challenge', dialogue: 'f_challenge', challenge: true },
-  { id: 'g-wrap', map: 'alder', target: 'van', objective: 'Report to Ward at the van', minutes: 1, chapter: 'Chapter 6 · Wrap-up', dialogue: 'g_wrap', end: true }
+  { id: 'f-challenge', map: 'alder', target: 'van', objective: 'Chapter challenge at the command van', minutes: 4, chapter: 'Chapter 6 · Challenge', dialogue: 'f_challenge', challenge: true, recallChapter: 6 },
+  { id: 'g-wrap', map: 'alder', target: 'van', objective: 'Report to Ward at the van', minutes: 1, chapter: 'Chapter 6 · Wrap-up', dialogue: 'g_wrap', chapterEnd: 6 },
+  { id: 'h-lot', map: 'precinct', target: 'ward', objective: 'Brief Ward on the impound-lot lead', minutes: 3, chapter: 'Chapter 7 · A: Inventory and special needs', dialogue: 'h_lot', objectives: ['CH7-INVENTORY', 'CH7-SPECIAL'], transition: 'precinct' },
+  { id: 'h-board', map: 'precinct', target: 'board', objective: 'Review the case board: borders, schools and status searches', minutes: 4, chapter: 'Chapter 7 · B: Contexts', dialogue: 'h_board', objectives: ['CH7-BORDER', 'CH7-SCHOOL', 'CH7-STATUS'], recallChapter: 7, chapterEnd: 7 },
+  { id: 'i-stop', map: 'alder', target: 'stop', objective: 'Review Brooks\'s roadside questions', minutes: 3, chapter: 'Chapter 8 · A: Custody and waiver', dialogue: 'i_stop', objectives: ['CH8-CUSTODY', 'CH8-WAIVER'], transition: 'alder' },
+  { id: 'i-vance', map: 'alder', target: 'vance', objective: 'Question Vance: interrogation and voluntariness', minutes: 3, chapter: 'Chapter 8 · B: Interrogation', dialogue: 'i_vance', objectives: ['CH8-INNIS', 'CH8-VOLUNTARY'] },
+  { id: 'i-marla', map: 'alder', target: 'marla', objective: 'Talk to Marla\'s son, a juvenile witness', minutes: 3, chapter: 'Chapter 8 · C: Juveniles and evidence', dialogue: 'i_marla', objectives: ['CH8-JUVENILE', 'CH8-TESTIMONIAL'], recallChapter: 8, chapterEnd: 8 },
+  { id: 'j-prep', map: 'precinct', target: 'board', objective: 'Prepare the suppression hearing at the case board', minutes: 3, chapter: 'Chapter 10 · A: Why exclude?', dialogue: 'j_prep', objectives: ['CH10-FRUIT', 'CH10-JUSTIFY'], transition: 'precinct' },
+  { id: 'j-ward', map: 'precinct', target: 'ward', objective: 'Run exceptions and remedies with Ward', minutes: 4, chapter: 'Chapter 10 · B: Exceptions', dialogue: 'j_ward', objectives: ['CH10-EXCEPTIONS', 'CH10-HUDSON'] },
+  { id: 'j-board', map: 'precinct', target: 'board', objective: 'Final prep: good faith and the states', minutes: 3, chapter: 'Chapter 10 · C: Good faith', dialogue: 'j_board', objectives: ['CH10-GOODFAITH', 'CH10-MAPP'], recallChapter: 10, chapterEnd: 10 },
+  { id: 'k-hearing', map: 'precinct', target: 'door', objective: 'The suppression hearing: head to court', minutes: 8, chapter: 'Final Hearing', dialogue: 'k_hearing', hearing: true, end: true }
 ];
 export const stepIndex = (id: string) => STEPS.findIndex(s => s.id === id);
 export const remainingMinutes = (idx: number) => Math.round(STEPS.slice(idx).reduce((a, s) => a + s.minutes, 0));

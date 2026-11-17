@@ -52,8 +52,8 @@ const answerPanel = async () => {
 const dialogue = async () => { for (let i = 0; i < 12; i++) { if (!(await page.locator('.dialogue').count())) return; await page.keyboard.press('Space'); await page.waitForTimeout(20); } };
 
 let steps = 0;
-for (; steps < 14; steps++) {
-  const t = await target(); if (!t) break;
+for (; steps < 60; steps++) {
+  let t = await target(); for (let k = 0; !t && k < 12 && !(await page.locator('.summary').count()); k++) { await page.waitForTimeout(500); t = await target(); } if (!t) break;
   await page.evaluate(({ x, y }) => { const w = (window as any).__casefile.world; w.setPosition(x - 6, y + 4); }, t);
   await page.waitForTimeout(80);
   await page.keyboard.press('e'); await page.waitForTimeout(120);

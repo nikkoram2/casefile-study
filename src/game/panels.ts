@@ -26,7 +26,7 @@ export function feedbackBlock(opts: { correct: boolean; consequence?: string; ex
   const toggle = btn('More detail', () => { more.toggleAttribute('hidden'); toggle.textContent = more.hasAttribute('hidden') ? 'More detail' : 'Less detail'; }, 'ghost small');
   const cont = btn(opts.label ?? 'Continue ▸', opts.onContinue, 'primary', { autofocus: true });
   const el = h('div', { class: 'feedback ' + (opts.correct ? 'ok' : 'bad'), role: 'status', 'aria-live': 'assertive' },
-    h('div', { class: 'verdict' }, opts.correct ? '✔ Correct' : '✖ Not quite'),
+    h('div', { class: 'verdict' }, opts.correct ? 'Correct' : 'Not quite'),
     opts.consequence ? h('p', { class: 'conseq' }, opts.consequence) : null,
     h('p', null, opts.explanation), ...(opts.extra ?? []),
     h('p', { class: 'rule' }, h('b', null, 'Rule: '), opts.rule),

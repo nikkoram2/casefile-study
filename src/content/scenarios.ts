@@ -6,7 +6,8 @@ type Def = Omit<Scenario, 'fictional' | 'flags' | 'hints'> & { hints: [string, s
 const S = (d: Def): Scenario => ({ flags: {}, ...d, fictional: true });
 const o = (id: string, text: string, misconception?: string, rect?: [number, number, number, number]): Option => ({ id, text, misconception, rect });
 
-export const SCENARIOS: Scenario[] = [
+import { SCENARIOS_B } from './scenarios_b';
+const BASE: Scenario[] = [
 // ───────────── 3-STEP SEARCH ANALYSIS ─────────────
 S({ id: 'S6-3STEP-1', objectiveId: 'CH6-3STEP', caseIds: [], variant: 'ordering the analysis', type: 'order', difficulty: 1,
   title: 'Put the analysis in order', setup: 'Detective Ward slaps the evidence board: "Every search question follows the same path. Put it in order."',
@@ -372,6 +373,7 @@ S({ id: 'S6-EXI-2', objectiveId: 'CH6-EXIGENT', caseIds: [], variant: 'no emerge
   rule: 'emergency (exigent circumstances) searches', hints: ['Is there an emergency?', 'What is the stated reason?', 'Convenience ≠ emergency.'],
   consequenceRight: 'You hold the line.', consequenceWrong: 'The entry would be challenged as warrantless without an exception.', flags: { wrong: 'exigent_error' } })
 ];
+export const SCENARIOS: Scenario[] = [...BASE, ...SCENARIOS_B];
 
 export const scenarioById = (id: string) => SCENARIOS.find(s => s.id === id)!;
 export const scenariosForObjective = (objectiveId: string) => SCENARIOS.filter(s => s.objectiveId === objectiveId);

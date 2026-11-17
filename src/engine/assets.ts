@@ -2,6 +2,8 @@
 import atlasUrl from '../assets/generated/atlas.png';
 import alderBg from '../assets/generated/alder_bg.png';
 import alderFg from '../assets/generated/alder_fg.png';
+import precBg from '../assets/generated/precinct_bg.png';
+import precFg from '../assets/generated/precinct_fg.png';
 import meta from '../assets/generated/atlas.json';
 
 export interface FrameInfo { x: number; y: number; w: number; h: number; ax: number; ay: number }
@@ -13,7 +15,7 @@ const load = (src: string) => new Promise<HTMLImageElement>((res, rej) => { cons
 export class Assets {
   atlas!: HTMLImageElement; layers: Record<string, { bg: HTMLImageElement; fg: HTMLImageElement }> = {};
   private static p?: Promise<Assets>;
-  static get(): Promise<Assets> { return (Assets.p ??= (async () => { const a = new Assets(); a.atlas = await load(atlasUrl); a.layers.alder = { bg: await load(alderBg), fg: await load(alderFg) }; return a; })()); }
+  static get(): Promise<Assets> { return (Assets.p ??= (async () => { const a = new Assets(); a.atlas = await load(atlasUrl); a.layers.alder = { bg: await load(alderBg), fg: await load(alderFg) }; a.layers.precinct = { bg: await load(precBg), fg: await load(precFg) }; return a; })()); }
   has(name: string) { return !!frames[name]; }
   info(name: string) { return frames[name]; }
   scene(id: string) { return scenes[id]; }

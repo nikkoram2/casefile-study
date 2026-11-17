@@ -23,4 +23,4 @@ Browser tests: `tests/e2e.ts` and `tests/e2e-practice.ts` (need Playwright + Chr
 
 ## Structure
 `src/content` (guide JSON, cases, scenarios, dialogue; no rendering code) · `src/learning` (recall builder, grading, mastery, scheduler) · `src/engine` (canvas world, procedural art, audio) · `src/game` (UI, flow, screens) · `src/persistence` · `scripts` · `tests`.
-The extracted study-guide source is kept out of this public repo; `src/content/generated/guide.json` is the committed data the game runs from.
+`src/content/source/study-guide.txt` is the extracted study guide. `scripts/extract-guide.ts` regenerates `generated/guide.json` from it, and the validator checks every guide-derived string against it.

@@ -20,6 +20,7 @@ const answerPanel = async () => {
   // loop while a decision panel is open
   for (let guard = 0; guard < 80; guard++) {
     if (await page.locator('.dialogue').count()) { await page.keyboard.press('Space'); await page.waitForTimeout(30); continue; }
+    if (await page.locator('.seq').count() && await page.locator('.seq .skip:visible').count() && !(await page.locator('.seq .hot').count())) { await page.locator('.seq .skip:visible').first().click({ timeout: 1500 }).catch(() => {}); await page.waitForTimeout(150); continue; }
     if (await page.locator('.seq').count()) {
       await page.waitForSelector('.seq .hot', { timeout: 15000 }); const n = await page.locator('.seq .hot').count();
       for (let i = 0; i < n; i++) { await page.locator('.seq .hot:not(.done)').first().click(); await page.waitForTimeout(120); await page.locator('.cap-text').click(); await page.waitForTimeout(120); }

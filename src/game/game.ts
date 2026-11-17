@@ -12,6 +12,7 @@ import { AttemptRecord, Profile, Run, loadProfile, saveProfile } from '../persis
 import { STEPS, Step, chapterProgress, remainingMinutes, scenariosForStep } from './flow';
 import { Outcome, runRecall, runScenario } from './panels';
 import { seqFor } from '../content/sequences';
+import { playSceneIntro } from './scenePlay';
 import { runVehicleSequence } from './vehicleSequence';
 import { handleEscape, h, btn, modalDepth, runDialogue, toast, $, openModal } from './ui';
 import { openEncyclopedia, openNotebook, openPause, showMenu, showSummary } from './screens';
@@ -82,7 +83,7 @@ export class Game {
     const r = this.head();
     if (step.dialogue) { const key = 'dlg:' + step.dialogue; await runDialogue(this.lines(step.dialogue), r.seenDialogue.includes(key)); if (!r.seenDialogue.includes(key)) r.seenDialogue.push(key); }
     const missed = missedObjectives(this.profile.records.filter(x => x.runId === r.runId)).map(m => m.id);
-    const list = step.hearing ? this.hearingScenarios(r, missed) : scenariosForStep(step, r, missed);
+    this.hearingNow = !!step.hearing; const list = step.hearing ? this.hearingScenarios(r, missed) : scenariosForStep(step, r, missed);
     for (let i = 0; i < list.length; i++) await this.playScenario(list[i], { index: i, total: list.length, mode: 'full' });
     if (step.recallChapter) await this.recallRound(step.recallChapter);
     r.completedSteps.push(step.id); r.stepIdx++; sfx.discover(); this.save();
@@ -90,9 +91,11 @@ export class Game {
     if (step.chapterEnd) { r.chapterDone[String(step.chapterEnd)] = true; this.save(); toast(`Chapter ${step.chapterEnd} complete. Keep going: the case continues.`); }
     if (step.end) { this.busy = false; this.finale(list); }
   }
+  private hearingNow = false;
   private async playScenario(s: Scenario, o: { index?: number; total?: number; mode: string }) {
     const r = this.profile.run; const seq = seqFor(s.id); let out: Outcome | undefined;
     if (seq && !['rapid', 'review'].includes(o.mode)) { try { out = await runVehicleSequence(s, seq, { ...o, reduced: this.profile.settings.reducedMotion, onCase: id => openEncyclopedia(this, id) }); } catch (e) { console.error('sequence failed, using classic panel', e); } }
+    if (!out && !['rapid', 'review'].includes(o.mode)) { const ch = objectiveById(s.objectiveId)?.chapter ?? 6; if (ch !== 6) { try { await playSceneIntro(s, ch, !!this.hearingNow, this.profile.settings.reducedMotion); } catch (e) { console.warn('scene intro failed', e); } } }
     out ??= await runScenario(s, { ...o, onCase: id => openEncyclopedia(this, id) });
     this.record({ itemId: s.id, objectiveId: s.objectiveId, chapter: (objectiveById(s.objectiveId)?.chapter ?? 6) as 6 | 7 | 8 | 10, category: 'application', correct: out.correct, hintsUsed: out.hintsUsed, mode: o.mode, runId: r?.runId ?? 'practice', variant: s.variant });
     if (r && o.mode === 'full') {

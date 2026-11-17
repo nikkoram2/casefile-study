@@ -5,6 +5,7 @@ import type { AttemptRecord } from '../persistence/save';
 import { resetProfile } from '../persistence/save';
 import { setMuted } from '../engine/audio';
 import type { Game } from './game';
+import { openMemoryArchive } from './memoryArchive';
 import { STEPS, chapterProgress, remainingMinutes } from './flow';
 import { btn, confirmModal, h, openModal, toast, $ } from './ui';
 
@@ -22,6 +23,7 @@ export function showMenu(g: Game) {
       btn('Rapid Review (15–25 min)', () => { root.remove(); g.rapidReview(); }, 'big'),
       btn('Targeted Practice', () => openPracticeSetup(g, root), 'big'),
       btn('Case Encyclopedia', () => openEncyclopedia(g), 'big'),
+      btn('Case Memory Archive', () => openMemoryArchive(g), 'big'),
       btn('Settings', () => openSettings(g), 'big'),
       lifetime.total ? btn('📊 My Results', () => showSummary(g, g.profile.records, { title: 'All practice so far' }), 'big ghost') : null),
     h('div', { class: 'mfoot' },

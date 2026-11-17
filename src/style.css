@@ -92,3 +92,4 @@ body:has(.seq) #hud{display:none}
 .dialogue{display:flex;gap:12px;align-items:flex-start}.dialogue .dbody{flex:1;min-width:0}.portwrap{flex:none;min-width:0}
 .portrait{image-rendering:pixelated;border:2px solid #c9a24a;border-radius:4px;background:#0b1022;display:block}
 .memcard-big{padding:12px 14px;background:#101830;border:1px solid #3a4b7a;border-left:4px solid #c9a24a;border-radius:6px;margin:8px 0}
+.opt.hot{transform:none;border:2px solid var(--line);color:inherit;font-size:.72rem;cursor:pointer}.opt.hot.sel{border-color:var(--amber)}

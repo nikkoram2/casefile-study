@@ -1,0 +1,460 @@
+{
+  "chapters": [
+    {
+      "n": 6,
+      "title": "Searches for Evidence"
+    },
+    {
+      "n": 7,
+      "title": "Special-Needs Searches"
+    },
+    {
+      "n": 8,
+      "title": "Self-Incrimination"
+    },
+    {
+      "n": 10,
+      "title": "The Exclusionary Rule"
+    }
+  ],
+  "topics": [
+    {
+      "chapter": 6,
+      "label": "3-Step Search Analysis",
+      "text": "(1) Was it a government search? (2) Was it reasonable? (3) If unreasonable, should the evidence be excluded?",
+      "idx": 1
+    },
+    {
+      "chapter": 6,
+      "label": "Warrant Requirements",
+      "text": "Requires particularity (specific place and items), a probable cause affidavit, and following the knock-and-announce rule (unless an exception applies: preventing violence, destruction of evidence, or escape).",
+      "idx": 2
+    },
+    {
+      "chapter": 6,
+      "label": "Five Warrant Exceptions",
+      "text": "Searches incident to arrest, consent searches, vehicle searches, container searches, and emergency (exigent circumstances) searches.",
+      "idx": 3
+    },
+    {
+      "chapter": 7,
+      "label": "Four Traits of Special-Needs Searches",
+      "text": "(1) Directed at the general public rather than specific suspects; (2) can still lead to criminal charges; (3) require no warrant or probable cause; (4) judged by balancing government safety/administrative needs against privacy.",
+      "idx": 1
+    },
+    {
+      "chapter": 7,
+      "label": "Other Contexts",
+      "text": "Airport screenings (advance notice + minimal intrusion), prison searches (Hudson v. Palmer), safety-sensitive public employee drug tests, and public school extracurricular drug testing (Vernonia, Earls).",
+      "idx": 2
+    },
+    {
+      "chapter": 8,
+      "label": "Confession Standards",
+      "text": "Evaluated under 14th Amendment Due Process (must be voluntary—requiring police coercion), 6th Amendment (right to counsel after formal charges), and 5th Amendment (Miranda protections against compelled self-incrimination).",
+      "idx": 1
+    },
+    {
+      "chapter": 8,
+      "label": "Testimonial vs. Physical Evidence",
+      "text": "The 5th Amendment protects only testimonial evidence (words/writing), not physical evidence (DNA, blood, fingerprints).",
+      "idx": 2
+    },
+    {
+      "chapter": 8,
+      "label": "When Miranda Applies",
+      "text": "Requires both Custody + Interrogation. Police deception, emotional appeals, and confronting suspects with evidence do not automatically make a confession involuntary.",
+      "idx": 3
+    },
+    {
+      "chapter": 10,
+      "label": "Three Justifications",
+      "text": "(1) Protecting constitutional rights, (2) judicial integrity, and (3) deterrence of police misconduct (the primary rationale today).",
+      "idx": 1
+    },
+    {
+      "chapter": 10,
+      "label": "Limits & Exceptions",
+      "text": "Illegally seized evidence is still allowed in collateral proceedings (grand juries, bail, sentencing), for impeaching a testifying defendant on cross-examination, under inevitable discovery, under the good-faith exception, and when errors are made by non-police (judges/clerks).",
+      "idx": 2
+    }
+  ],
+  "dcs": [
+    {
+      "chapter": 6,
+      "n": 1,
+      "term": "Grabbable Area",
+      "definition": "The space within an arrestee’s immediate control where they could reach a weapon or destroy evidence."
+    },
+    {
+      "chapter": 6,
+      "n": 2,
+      "term": "Robinson Rule (Bright-Line Rule)",
+      "definition": "Police may automatically conduct a full search of anyone they lawfully take into custodial arrest (does not apply to citations)."
+    },
+    {
+      "chapter": 6,
+      "n": 3,
+      "term": "Pretext Arrests/Stops",
+      "definition": "Using a valid minor traffic violation to stop a car and investigate an unrelated crime lacking probable cause."
+    },
+    {
+      "chapter": 6,
+      "n": 4,
+      "term": "Consent Searches",
+      "definition": "Warrantless searches permitted voluntarily by someone with actual or apparent authority (consent can be withdrawn anytime)."
+    },
+    {
+      "chapter": 6,
+      "n": 5,
+      "term": "Vehicle Exception",
+      "definition": "Police with probable cause to believe a car holds contraband may search it without a warrant due to mobility and reduced privacy."
+    },
+    {
+      "chapter": 7,
+      "n": 1,
+      "term": "Special-Needs Searches",
+      "definition": "Warrantless, suspicionless searches serving non-criminal administrative or public safety goals."
+    },
+    {
+      "chapter": 7,
+      "n": 2,
+      "term": "Inventory Searches",
+      "definition": "Cataloging property in police custody to protect owner belongings, prevent false theft claims, and protect officers from danger."
+    },
+    {
+      "chapter": 7,
+      "n": 3,
+      "term": "Routine-Procedure Limit",
+      "definition": "Inventory searches must follow standardized departmental policies rather than acting as a pretext for criminal investigation."
+    },
+    {
+      "chapter": 7,
+      "n": 4,
+      "term": "Border Search Exception",
+      "definition": "Routine searches at international borders require no warrant or suspicion (strip searches require reasonable suspicion; body-cavity searches require probable cause)."
+    },
+    {
+      "chapter": 7,
+      "n": 5,
+      "term": "In Loco Parentis",
+      "definition": "School officials act \"in place of a parent\" and need only reasonable suspicion to search K–12 students."
+    },
+    {
+      "chapter": 8,
+      "n": 1,
+      "term": "Custodial Interrogation",
+      "definition": "Police questioning after a suspect is arrested or deprived of freedom to a degree associated with formal arrest."
+    },
+    {
+      "chapter": 8,
+      "n": 2,
+      "term": "Accusatory System Rationale",
+      "definition": "The government must prove guilt through independent evidence rather than forcing the accused to confess."
+    },
+    {
+      "chapter": 8,
+      "n": 3,
+      "term": "Critical Stage in Criminal Prosecutions",
+      "definition": "Any phase where substantial rights of the accused are at risk, triggering constitutional counsel protections."
+    },
+    {
+      "chapter": 8,
+      "n": 4,
+      "term": "Inherently Coercive",
+      "definition": "Miranda’s premise that isolated, police-dominated interrogation environments inherently pressure suspects' free will."
+    },
+    {
+      "chapter": 8,
+      "n": 5,
+      "term": "\"Functional Equivalent of a Question\" Test (Rhode Island v. Innis)",
+      "definition": "Interrogation includes any police words or actions they should know are reasonably likely to elicit an incriminating response."
+    },
+    {
+      "chapter": 10,
+      "n": 1,
+      "term": "Fruit of the Poisonous Tree",
+      "definition": "Secondary evidence derived from an initial unconstitutional search or interrogation is also tainted and inadmissible."
+    },
+    {
+      "chapter": 10,
+      "n": 2,
+      "term": "Judicial Integrity Justification",
+      "definition": "Courts should not validate or participate in unlawful police conduct by admitting tainted evidence."
+    },
+    {
+      "chapter": 10,
+      "n": 3,
+      "term": "Deterrence Justification",
+      "definition": "Excluding tainted evidence removes the incentive for police to violate constitutional rights."
+    },
+    {
+      "chapter": 10,
+      "n": 4,
+      "term": "Inevitable Discovery Exception",
+      "definition": "Tainted evidence is admissible if the state proves it would have been found lawfully anyway (Nix v. Williams)."
+    },
+    {
+      "chapter": 10,
+      "n": 5,
+      "term": "Prophylactic Rule",
+      "definition": "A judge-made rule (like Miranda or the exclusionary rule) designed to prevent constitutional violations before they occur."
+    }
+  ],
+  "cases": [
+    {
+      "chapter": 6,
+      "name": "Chimel v. California",
+      "cite": "395 U.S. 752 (1969)",
+      "list": "Gold List",
+      "story": "Police arrested Chimel inside his home on an arrest warrant and searched his entire three-bedroom house without a search warrant, finding stolen coins.",
+      "issue": "Can police search an entire home incident to an arrest without a search warrant?",
+      "rule": "No; searches incident to arrest are limited to the arrestee's person and their \"grabbable area\"."
+    },
+    {
+      "chapter": 6,
+      "name": "Arizona v. Gant",
+      "cite": "129 S. Ct. 1710 (2009)",
+      "list": "Legal Brief",
+      "story": "Police arrested Gant for driving with a suspended license, handcuffed him in a patrol car, and then searched his car, finding cocaine.",
+      "issue": "When can police search a vehicle incident to a recent occupant's arrest?",
+      "rule": "Only if the arrestee is unsecured and within reaching distance of the cabin, OR it is reasonable to believe evidence of the crime of arrest is inside."
+    },
+    {
+      "chapter": 6,
+      "name": "Whren v. United States",
+      "cite": "517 U.S. 806 (1996)",
+      "list": "Legal Brief",
+      "story": "Plainclothes vice officers stopped a truck for failing to signal and speeding, purely hoping to find drugs, and spotted crack cocaine inside.",
+      "issue": "Is a traffic stop unconstitutional if the officer's real motive is investigating another crime?",
+      "rule": "No; pretext stops are valid so long as objective probable cause exists for the traffic violation."
+    },
+    {
+      "chapter": 6,
+      "name": "Illinois v. Rodriguez",
+      "cite": "497 U.S. 177 (1990)",
+      "list": "Legal Brief",
+      "story": "A woman who had moved out of Rodriguez's apartment used her key to let police inside, where they found drugs; she lacked actual legal authority to consent.",
+      "issue": "Is a warrantless entry valid if police reasonably, but mistakenly, believe a third party has authority to consent?",
+      "rule": "Yes, under the apparent authority doctrine (if a reasonable officer would believe the person had common authority)."
+    },
+    {
+      "chapter": 6,
+      "name": "Wyoming v. Houghton",
+      "cite": "526 U.S. 295 (1999)",
+      "list": "Legal Brief",
+      "story": "During a traffic stop, an officer saw a syringe in the driver's pocket, searched the car, and found drugs inside a passenger's purse on the backseat.",
+      "issue": "Does probable cause to search a vehicle extend to a passenger's personal belongings?",
+      "rule": "Yes; officers with probable cause to search a car may search passengers' containers capable of holding the target evidence."
+    },
+    {
+      "chapter": 6,
+      "name": "State v. Green",
+      "cite": "943 So. 2d 1004 (Fla. 2d DCA 2006)",
+      "list": "Legal Brief",
+      "story": "After arresting Green, officers looked through his parked car's window, saw a razor blade with white residue, unlocked the car, and seized cocaine.",
+      "issue": "Do police need a warrant or separate exigency to search a parked car after arresting the owner when probable cause exists?",
+      "rule": "No; under the vehicle exception, probable cause and a readily mobile vehicle are enough for a warrantless search."
+    },
+    {
+      "chapter": 7,
+      "name": "South Dakota v. Opperman",
+      "cite": "428 U.S. 364 (1976)",
+      "list": "Green List",
+      "story": "Police impounded Opperman's illegally parked car, followed standard policy to catalog valuables inside, and found marijuana in the unlocked glovebox.",
+      "issue": "Are routine inventory searches of impounded cars constitutional without a warrant?",
+      "rule": "Yes, provided they are conducted according to standard, routine procedures rather than investigative pretext."
+    },
+    {
+      "chapter": 7,
+      "name": "Samson v. California",
+      "cite": "126 S. Ct. 2193 (2006)",
+      "list": "Legal Brief",
+      "story": "An officer stopped Samson on the street knowing he was on parole—without any suspicion of new crime—searched him, and found methamphetamine.",
+      "issue": "Can police conduct a suspicionless search of a parolee?",
+      "rule": "Yes; parolees have severely diminished privacy expectations, making suspicionless searches reasonable."
+    },
+    {
+      "chapter": 7,
+      "name": "State v. Ellis",
+      "cite": "2006 WL 82736 (Ohio App. 2006)",
+      "list": "Legal Brief",
+      "story": "College RAs entered Ellis’s dorm room during a safety check, spotted drug paraphernalia, and called campus police, who entered without a warrant.",
+      "issue": "Can police enter a college dorm room without a warrant after RAs discover contraband?",
+      "rule": "No; college dorm rooms have full Fourth Amendment home protections, so police still need a warrant or valid exception."
+    },
+    {
+      "chapter": 7,
+      "name": "Maryland v. King",
+      "cite": "133 S. Ct. 1958 (2013)",
+      "list": "Legal Brief",
+      "story": "After arresting King for felony assault, police took a routine DNA cheek swab during booking, matching him to an unsolved rape case.",
+      "issue": "Does taking a DNA swab during booking for a serious offense violate the Fourth Amendment?",
+      "rule": "No; booking DNA swabs for serious arrests are a valid identification procedure like fingerprinting."
+    },
+    {
+      "chapter": 8,
+      "name": "Miranda v. Arizona",
+      "cite": "384 U.S. 436 (1966)",
+      "list": "Legal Brief",
+      "story": "Police interrogated Ernesto Miranda in isolation for two hours without informing him of his right to silence or counsel, obtaining a signed confession.",
+      "issue": "What safeguards are required before custodial interrogation?",
+      "rule": "Police must give the four Miranda warnings and obtain a knowing, intelligent, and voluntary waiver before custodial questioning."
+    },
+    {
+      "chapter": 8,
+      "name": "Berkemer v. McCarty",
+      "cite": "468 U.S. 420 (1984)",
+      "list": "Legal Brief",
+      "story": "An officer pulled McCarty over for weaving, asked roadside questions about drinking (which McCarty admitted), and then arrested him.",
+      "issue": "Are Miranda warnings required during a routine traffic stop?",
+      "rule": "No; ordinary traffic stops are brief and public, so they do not constitute Miranda \"custody\" until formal arrest."
+    },
+    {
+      "chapter": 8,
+      "name": "Berghuis v. Thompkins",
+      "cite": "130 S. Ct. 2250 (2010)",
+      "list": "Gold List",
+      "story": "After receiving Miranda warnings, Thompkins sat mostly silent for nearly three hours before answering \"yes\" when asked if he prayed for forgiveness for shooting the victim.",
+      "issue": "Does staying silent invoke Miranda, and can a suspect waive rights simply by speaking?",
+      "rule": "Suspects must unambiguously invoke silence to stop questioning; making an uncoerced statement after understanding rights acts as an implied waiver."
+    },
+    {
+      "chapter": 8,
+      "name": "Colorado v. Connelly",
+      "cite": "479 U.S. 157 (1986)",
+      "list": "Green List",
+      "story": "Suffering from psychosis, Connelly walked up to a Denver officer and confessed to murder because \"the voice of God\" told him to.",
+      "issue": "Is a confession involuntary under Due Process if driven by mental illness without police coercion?",
+      "rule": "No; coercive police conduct is required for a confession to violate Due Process."
+    },
+    {
+      "chapter": 8,
+      "name": "State v. S.V.",
+      "cite": "958 So. 2d 609 (Fla. 4th DCA 2007)",
+      "list": "Legal Brief",
+      "story": "Detectives interrogated a juvenile (S.V.) without notifying his parents beforehand, and continued questioning even after he asked to speak with his parents.",
+      "issue": "Must police notify parents before questioning a juvenile, and what if the juvenile asks for them?",
+      "rule": "Prior parental notification is not strictly required, but questioning must stop immediately if a juvenile asks for their parents."
+    },
+    {
+      "chapter": 10,
+      "name": "Mapp v. Ohio",
+      "cite": "367 U.S. 643 (1961)",
+      "list": "Legal Brief",
+      "story": "Cleveland police forced their way into Dollree Mapp's home with a fake warrant looking for a bombing suspect and seized obscene books in her basement.",
+      "issue": "Does the Fourth Amendment exclusionary rule apply to state courts?",
+      "rule": "Yes; illegally obtained evidence is inadmissible in state criminal trials via the 14th Amendment."
+    },
+    {
+      "chapter": 10,
+      "name": "Hudson v. Michigan",
+      "cite": "547 U.S. 586 (2006)",
+      "list": "Legal Brief",
+      "story": "Police had a valid warrant to search Hudson's home for drugs, announced their presence, but waited only 3–5 seconds before entering.",
+      "issue": "Does violating the \"knock-and-announce\" rule require excluding evidence found under a valid warrant?",
+      "rule": "No; knock-and-announce violations do not trigger the exclusionary rule because the social costs outweigh minimal deterrence."
+    },
+    {
+      "chapter": 10,
+      "name": "Herring v. United States",
+      "cite": "129 S. Ct. 695 (2009)",
+      "list": "Gold List",
+      "story": "Officers arrested and searched Herring based on a warrant listed in a neighboring county's database that had actually been recalled months earlier, due to a clerk's oversight.",
+      "issue": "Does the exclusionary rule apply when an illegal arrest stems from isolated police clerical negligence?",
+      "rule": "No; under the good-faith exception, suppression applies only to deliberate, reckless, or grossly negligent police misconduct (or systemic negligence)."
+    }
+  ],
+  "table": [
+    {
+      "name": "Chimel v. California",
+      "chapter": 6,
+      "takeaway": "Search incident to arrest is limited to the \"grabbable area\"."
+    },
+    {
+      "name": "Arizona v. Gant",
+      "chapter": 6,
+      "takeaway": "Vehicle search incident to arrest allowed only if arrestee is unsecured/within reach OR police reasonably believe evidence of the crime of arrest is inside."
+    },
+    {
+      "name": "Whren v. U.S.",
+      "chapter": 6,
+      "takeaway": "Pretext traffic stops are constitutional if objective probable cause exists for a traffic offense."
+    },
+    {
+      "name": "Illinois v. Rodriguez",
+      "chapter": 6,
+      "takeaway": "Warrantless entry is valid if police reasonably rely on a third party's apparent authority to consent."
+    },
+    {
+      "name": "Wyoming v. Houghton",
+      "chapter": 6,
+      "takeaway": "Probable cause to search a car extends to passengers' containers inside."
+    },
+    {
+      "name": "State v. Green",
+      "chapter": 6,
+      "takeaway": "Vehicle exception allows warrantless search of a parked car with probable cause; no extra exigency needed."
+    },
+    {
+      "name": "South Dakota v. Opperman",
+      "chapter": 7,
+      "takeaway": "Inventory searches of impounded cars are valid without a warrant if done via routine procedures."
+    },
+    {
+      "name": "Samson v. California",
+      "chapter": 7,
+      "takeaway": "Suspicionless searches of parolees are constitutional due to severely diminished privacy."
+    },
+    {
+      "name": "State v. Ellis",
+      "chapter": 7,
+      "takeaway": "College dorm rooms have full Fourth Amendment home protection; police need a warrant/exception even if RAs find contraband."
+    },
+    {
+      "name": "Maryland v. King",
+      "chapter": 7,
+      "takeaway": "Routine DNA cheek swabs of arrestees for serious offenses are valid booking procedures."
+    },
+    {
+      "name": "Miranda v. Arizona",
+      "chapter": 8,
+      "takeaway": "Custodial interrogation is inherently coercive; requires 4 warnings and a valid waiver."
+    },
+    {
+      "name": "Berkemer v. McCarty",
+      "chapter": 8,
+      "takeaway": "Routine traffic stops are not \"custody\" for Miranda purposes."
+    },
+    {
+      "name": "Berghuis v. Thompkins",
+      "chapter": 8,
+      "takeaway": "Suspects must unambiguously invoke silence; speaking after understanding rights is an implied waiver."
+    },
+    {
+      "name": "Colorado v. Connelly",
+      "chapter": 8,
+      "takeaway": "Police coercion is required for an involuntary confession; mental illness alone does not violate Due Process."
+    },
+    {
+      "name": "State v. S.V.",
+      "chapter": 8,
+      "takeaway": "Police need not notify parents before questioning a juvenile, but must stop if the juvenile asks for a parent."
+    },
+    {
+      "name": "Mapp v. Ohio",
+      "chapter": 10,
+      "takeaway": "Incorporated the Exclusionary Rule to all state courts."
+    },
+    {
+      "name": "Hudson v. Michigan",
+      "chapter": 10,
+      "takeaway": "Knock-and-announce violations do not trigger the exclusionary rule."
+    },
+    {
+      "name": "Herring v. U.S.",
+      "chapter": 10,
+      "takeaway": "Isolated police clerical negligence falls under good faith; exclusion requires deliberate, reckless, or grossly negligent conduct."
+    }
+  ]
+}

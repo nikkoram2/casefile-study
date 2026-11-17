@@ -1,0 +1,10 @@
+import { Img } from './pixel';
+import { allCharacterFrames, SPECS } from './gen-characters';
+import { FH, FW } from '../src/engine/spec';
+const frames = allCharacterFrames(); console.log('frames', frames.length);
+const chars = Object.keys(SPECS);
+const pick = (n: string) => frames.find(f => f.name === n)?.img;
+const cols = ['idle_down_0', 'idle_up_0', 'idle_left_0', 'walk_down_0', 'walk_down_1', 'walk_left_0', 'walk_left_2', 'walk_up_1', 'talk_down_1', 'inspect_left_2', 'read_down_0', 'search_up_1', 'search_left_1', 'handcuff_down_2', 'cuffed_down_0', 'present_left_0', 'pickup_down_1'];
+const sheet = new Img(cols.length * (FW + 2) + 2, chars.length * (FH + 2) + 2); sheet.rect(0, 0, sheet.w, sheet.h, '#2d3858');
+chars.forEach((c, r) => cols.forEach((n, k) => { const im = pick(`${c}/${n}`); if (im) sheet.blit(im, 2 + k * (FW + 2), 2 + r * (FH + 2)); }));
+await sheet.scaled('shots/chars-sheet.png', 4);

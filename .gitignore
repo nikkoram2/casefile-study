@@ -1,0 +1,9 @@
+node_modules
+shots
+dist
+*.xhtml
+/casefile.html
+.DS_Store
+*.log
+.env*
+assets-gen

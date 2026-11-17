@@ -1,0 +1,20 @@
+{
+  "name": "casefile-shadows-of-justice",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "CASEFILE: Shadows of Justice - a Criminal Procedure study adventure",
+  "scripts": {
+    "extract": "tsx scripts/extract-guide.ts",
+    "validate": "tsx scripts/validate-content.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx tests/sim.test.ts",
+    "build": "node build.mjs",
+    "check": "npm run extract && npm run validate && npm run typecheck && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.0"
+  }
+}

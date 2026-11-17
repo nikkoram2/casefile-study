@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CASEFILE: Shadows of Justice | Criminal Procedure Study Game</title>
+<meta name="description" content="A free browser detective game for studying Criminal Procedure: searches, arrests and vehicle stops. No download, no account. A supplementary study resource.">
+<meta name="theme-color" content="#0d1226"><meta property="og:title" content="CASEFILE: Shadows of Justice"><meta property="og:description" content="A free browser detective game for studying Criminal Procedure. Supplementary study resource.">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./assets/main.css">
+</head>
+<body>
+<noscript>This study game needs JavaScript enabled.</noscript>
+<div id="app"><div id="stage"><canvas id="game" aria-label="Game world" role="img"></canvas></div></div>
+<div id="hud" hidden>
+  <div class="l"><div id="hud-ch"></div><div id="hud-obj"></div></div>
+  <div class="prog" title="Session progress"><i id="hud-bar"></i></div><span id="hud-time" class="muted"></span>
+  <button id="btn-notebook" class="hbtn" title="Notebook (Tab)" aria-label="Open notebook">📓</button>
+  <button id="mute" class="hbtn" title="Mute / unmute" aria-label="Toggle sound">🔊</button>
+  <button id="btn-full" class="hbtn" title="Fullscreen" aria-label="Toggle fullscreen">⛶</button>
+  <button id="btn-pause" class="hbtn" title="Pause (Esc)" aria-label="Pause">⏸</button>
+</div>
+<div id="ui"></div><div id="fade"></div>
+<script src="./assets/main.js"></script>
+</body>
+</html>

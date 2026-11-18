@@ -93,3 +93,5 @@ body:has(.seq) #hud{display:none}
 .portrait{image-rendering:pixelated;border:2px solid #c9a24a;border-radius:4px;background:#0b1022;display:block}
 .memcard-big{padding:12px 14px;background:#101830;border:1px solid #3a4b7a;border-left:4px solid #c9a24a;border-radius:6px;margin:8px 0}
 .opt.hot{transform:none;border:2px solid var(--line);color:inherit;font-size:.72rem;cursor:pointer}.opt.hot.sel{border-color:var(--amber)}
+.opt.right{background:#1f4a35;border-color:#6fd39a}.opt.wrong{background:#4a1f26;border-color:#e07a86}.opt.sel{border-color:#c9a24a;background:#3a2f12}.matchlist{max-height:60vh;overflow:auto}
+.matchgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:14px;align-items:start}.matchgrid .opt{font-size:.85rem;text-align:left}@media(max-width:760px){.matchgrid{grid-template-columns:1fr}}

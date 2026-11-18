@@ -26,7 +26,7 @@ const PAIRS: [string, string, string][] = [
 const MKEY = 'casefile.memory.v1';
 type Mem = Record<string, { n: number; ok: number }>;
 const loadM = (): Mem => { try { return JSON.parse(localStorage.getItem(MKEY) || '{}'); } catch { return {}; } };
-const bump = (id: string, ok: boolean) => { const m = loadM(); const e = m[id] ?? { n: 0, ok: 0 }; e.n++; if (ok) e.ok++; m[id] = e; try { localStorage.setItem(MKEY, JSON.stringify(m)); } catch { /* ignore */ } };
+export const bump = (id: string, ok: boolean) => { const m = loadM(); const e = m[id] ?? { n: 0, ok: 0 }; e.n++; if (ok) e.ok++; m[id] = e; try { localStorage.setItem(MKEY, JSON.stringify(m)); } catch { /* ignore */ } };
 const rate = (id: string) => { const e = loadM()[id]; return e ? e.ok / e.n : 0.5; };
 const shuffle = <T,>(a: T[]) => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 

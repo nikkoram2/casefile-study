@@ -6,6 +6,7 @@ import { resetProfile } from '../persistence/save';
 import { setMuted } from '../engine/audio';
 import type { Game } from './game';
 import { openMemoryArchive } from './memoryArchive';
+import { openCaseMatch } from './caseMatch';
 import { STEPS, chapterProgress, remainingMinutes } from './flow';
 import { btn, confirmModal, h, openModal, toast, $ } from './ui';
 
@@ -24,6 +25,7 @@ export function showMenu(g: Game) {
       btn('Targeted Practice', () => openPracticeSetup(g, root), 'big'),
       btn('Case Encyclopedia', () => openEncyclopedia(g), 'big'),
       btn('Case Memory Archive', () => openMemoryArchive(g), 'big'),
+      btn('Case Match', () => openCaseMatch(), 'big'),
       btn('Settings', () => openSettings(g), 'big'),
       lifetime.total ? btn('📊 My Results', () => showSummary(g, g.profile.records, { title: 'All practice so far' }), 'big ghost') : null),
     h('div', { class: 'mfoot' },

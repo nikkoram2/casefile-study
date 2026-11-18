@@ -43,7 +43,7 @@ export function runMemoryDrill(opts: { count: number; chapters?: number[]; title
     const reveal = () => {
       const c = picks[i]; let left = 12 + Math.min(8, i * 2); const t = h('b', null, String(left)); let timer = 0;
       const go = () => { clearInterval(timer); choose(); };
-      body.replaceChildren(h('div', { class: 'eyebrow' }, `Card ${i + 1} of ${picks.length} · Stage 1: study the facts`), h('div', { class: 'memcard-big' }, h('h3', null, 'Who decided this?'), h('p', null, c.facts), h('p', { class: 'muted' }, 'Issue: ' + c.issue)), h('div', { class: 'row' }, h('span', { class: 'muted' }, 'Reveal ends in ', t, ' s'), btn('I\'m ready', go, 'primary')));
+      body.replaceChildren(h('div', { class: 'eyebrow' }, `Card ${i + 1} of ${picks.length} · Stage 1: study the facts`), h('div', { class: 'memcard-big' }, h('h3', null, 'Who decided this?'), h('p', null, maskNames(c.name, c.facts)), h('p', { class: 'muted' }, 'Issue: ' + maskNames(c.name, c.issue))), h('div', { class: 'row' }, h('span', { class: 'muted' }, 'Reveal ends in ', t, ' s'), btn('I\'m ready', go, 'primary')));
       timer = window.setInterval(() => { left--; t.textContent = String(Math.max(0, left)); if (left <= 0) go(); }, 1000);
     };
     const choose = () => {
@@ -61,6 +61,14 @@ export function runMemoryDrill(opts: { count: number; chapters?: number[]; title
     };
     reveal();
   });
+}
+
+/** Hides the case's own party names (and known first names) so descriptions can't give the answer away in quizzes. */
+export function maskNames(name: string, text: string): string {
+  const parties = name.split(/\s+v\.\s+/).map(p => p.replace(/^State of /, '')).filter(p => !/^(State|United States)$/.test(p));
+  let out = text;
+  for (const p of parties) out = out.replace(new RegExp('(?:(?:Ernesto|Dollree)\\s+)?' + p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\\\./g, '\\.?') + '(?=[^A-Za-z]|$)', 'g'), '_____');
+  return out;
 }
 
 export function openMemoryArchive(g: Game) {

@@ -1,7 +1,7 @@
 // Case Match module: match each court case to its explanation (facts and issue), then to its rule of law.
 // The rule of law is always shown in bold. Results feed the same separate memory store as the Memory Drill.
 import { CASES } from '../content/guide';
-import { bump } from './memoryArchive';
+import { bump, maskNames } from './memoryArchive';
 import { btn, h, openModal } from './ui';
 
 const shuffle = <T,>(a: T[]) => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
@@ -38,8 +38,8 @@ export function openCaseMatch() {
   };
   const round = () => {
     const cases = shuffle(pool()).slice(0, size); if (cases.length < 2) { menu(); return; }
-    stage(cases, 'Step 1 of 2: match each case to its explanation', c => ({ text: `${c.facts} Issue: ${c.issue}`, bold: false }), m1 => {
-      stage(cases, 'Step 2 of 2: match each case to its rule of law', c => ({ text: c.rule, bold: true }), m2 => {
+    stage(cases, 'Step 1 of 2: match each case to its explanation', c => ({ text: maskNames(c.name, `${c.facts} Issue: ${c.issue}`), bold: false }), m1 => {
+      stage(cases, 'Step 2 of 2: match each case to its rule of law', c => ({ text: maskNames(c.name, c.rule), bold: true }), m2 => {
         for (const c of cases) bump(c.id, m1 + m2 === 0);
         const total = m1 + m2;
         body.replaceChildren(h('h3', null, total === 0 ? 'Perfect round' : `Round complete: ${total} wrong ${total === 1 ? 'pick' : 'picks'}`),

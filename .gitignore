@@ -7,3 +7,19 @@ dist
 *.log
 .env*
 assets-gen
+
+# Never commit local assistant settings, credentials or private study material
+.claude/
+**/.claude/settings.local.json
+CLAUDE.local.md
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+.npmrc
+.netrc
+credentials*.json
+secrets*
+study-guide.txt
+src/content/source/
